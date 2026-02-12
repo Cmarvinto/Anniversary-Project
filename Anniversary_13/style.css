@@ -1,0 +1,386 @@
+:root {
+  --rose: radial-gradient(circle at top, #ff9fb0, #b30047);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: radial-gradient(circle at top, #2b0018, #050008);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Segoe UI", sans-serif;
+  overflow: hidden;
+  color: white;
+}
+
+/* Candle glow */
+.candle-glow {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+    circle,
+    rgba(255, 170, 120, 0.15),
+    transparent 65%
+  );
+  animation: flicker 4s infinite alternate;
+  pointer-events: none;
+}
+@keyframes flicker {
+  from {
+    opacity: 0.6;
+  }
+  to {
+    opacity: 0.9;
+  }
+}
+
+.scene {
+  text-align: center;
+}
+
+/* Bouquet */
+.bouquet {
+  position: relative;
+  width: 300px;
+  height: 420px;
+  margin: auto;
+}
+
+/* Rose heads */
+.rose {
+  position: absolute;
+  width: 110px;
+  height: 140px;
+  background: var(--rose);
+  border-radius: 60% 60% 80% 80%;
+  transform: scale(0);
+  transition: transform 1.5s ease;
+}
+.bloom .rose {
+  transform: scale(1);
+}
+
+.r1 {
+  left: 95px;
+  top: 0;
+}
+.r2 {
+  left: 30px;
+  top: 50px;
+}
+.r3 {
+  left: 160px;
+  top: 50px;
+}
+.r4 {
+  left: 10px;
+  top: 120px;
+}
+.r5 {
+  left: 180px;
+  top: 120px;
+}
+.r6 {
+  left: 60px;
+  top: 160px;
+}
+.r7 {
+  left: 130px;
+  top: 160px;
+}
+
+/* Stem */
+.stem {
+  position: absolute;
+  top: 120px;
+  left: 50%;
+  width: 8px;
+  height: 200px;
+  background: linear-gradient(#2e7d32, #0b3d14);
+  transform: translateX(-50%);
+  border-radius: 4px;
+}
+
+/* Leaves */
+.leaves::before,
+.leaves::after {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 20px;
+  background: #1b5e20;
+  border-radius: 50%;
+  top: 160px;
+}
+.leaves::before {
+  left: -35px;
+  transform: rotate(-20deg);
+}
+.leaves::after {
+  left: 5px;
+  transform: rotate(25deg);
+}
+
+/* Ribbon */
+.ribbon {
+  position: absolute;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 20px;
+  background: #c2185b;
+  border-radius: 10px;
+}
+.ribbon .bow {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: #e91e63;
+  border-radius: 50%;
+  top: -5px;
+}
+.ribbon .left {
+  left: -20px;
+}
+.ribbon .right {
+  right: -20px;
+}
+
+/* Message */
+.message {
+  margin-top: 30px;
+}
+.hidden {
+  opacity: 0;
+}
+
+.message h1 {
+  text-shadow: 0 0 15px #ff4d6d;
+}
+
+/* Heart photo */
+.heart-frame {
+  width: 160px;
+  height: 140px;
+  margin: 20px auto;
+  clip-path: path(
+    "M80 25 C80 -10 160 -10 160 45
+     C160 110 80 140 80 140
+     C80 140 0 110 0 45
+     C0 -10 80 -10 80 25 Z"
+  );
+  overflow: hidden;
+  box-shadow: 0 0 25px #ff4d6d;
+}
+.heart-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Explosion */
+.explosion {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  color: #ff4d6d;
+  animation: explode 2s ease forwards;
+}
+@keyframes explode {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.4);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .scene {
+    transform: scale(0.75);
+  }
+}
+/* Button style */
+.love-btn {
+  position: relative;
+  z-index: 20;
+  background: #ff4d6d;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 30px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  box-shadow: 0 0 15px #ff4d6d;
+  transition: 0.3s;
+}
+.love-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Ribbon style (horizontal) */
+.ribbon {
+  position: absolute;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 20px;
+  background: #c2185b;
+  border-radius: 20px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  min-width: 150px;
+}
+
+/* Message spacing */
+.message {
+  margin-top: 40px;
+  position: relative;
+  z-index: 10;
+}
+
+/* Smooth slideshow inside heart-frame */
+.heart-frame img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+}
+.heart-frame img.active {
+  opacity: 1;
+}
+
+/* Image rain */
+.img-rain {
+  position: fixed;
+  top: -80px;
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 10px;
+  animation: fall 6s linear forwards;
+  pointer-events: none;
+}
+/* Button simple */
+.love-btn {
+  background: #ff4d6d;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 30px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  box-shadow: 0 0 15px #ff4d6d;
+  transition: 0.3s;
+}
+.love-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Ribbon */
+.ribbon {
+  position: absolute;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 20px;
+  background: #c2185b;
+  border-radius: 20px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  min-width: 150px;
+  z-index: 10;
+}
+
+/* Message top */
+.message {
+  margin-top: 40px;
+  position: relative;
+  z-index: 10;
+}
+
+.hidden {
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+}
+
+.message.show {
+  opacity: 1;
+}
+
+.slideshow {
+  width: 300px; /* match img4 width */
+  height: 200px; /* match img4 height */
+  margin: 20px auto 0 auto;
+  position: relative;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+}
+
+.slideshow.show {
+  opacity: 1;
+}
+
+.slideshow img {
+  width: 100%;
+  height: 100%; /* fill container, same size as img4 */
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+  object-fit: cover; /* crop/stretch to fill container nicely */
+}
+
+.slideshow img.active {
+  opacity: 1;
+}
+
+/* Mobile friendly scaling */
+@media (max-width: 500px) {
+  .slideshow {
+    width: 200px; /* scale down */
+    height: 133px; /* maintain same ratio */
+  }
+}
+
+/* Falling animation */
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Image rain like hearts */
+.img-rain {
+  position: fixed;
+  top: -80px;
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 10px;
+  animation: fall linear forwards;
+  pointer-events: none;
+}
